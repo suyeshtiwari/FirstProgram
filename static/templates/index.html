@@ -1,0 +1,302 @@
+<div ng-include="'templates/header.html'"></div>
+<div class="carouselContainer">
+	<div id="myCarousel" class="carousel slide innerBodyContainer marTop60"
+		data-ride="carousel" data-ng-init=search()>
+
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+		</ol>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner homeSlider">
+			<div class="item active">
+				<img src="images/home-slider.jpg" alt="Los Angeles">
+			</div>
+			<div class="item">
+				<img src="images/home-slider.jpg" alt="Chicago">
+			</div>
+			<div class="item">
+				<img src="images/home-slider.jpg" alt="New York">
+			</div>
+		</div>
+
+		<!-- Left and right controls -->
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span> <span
+			class="sr-only">Previous</span>
+		</a> <a class="right carousel-control" href="#myCarousel" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right"></span> <span
+			class="sr-only">Next</span>
+		</a>
+	</div>
+</div>
+<div class="rightWidget">
+        <div class="widgetImg">
+            <img src="images/home-slider.jpg" alt="widgetImg" />
+        </div>
+		<button class="radioButtonGreen inline-block active">
+			<input class="hidden" name="company" type="radio"
+				value="Corporate" ng-model="userDetails.professionfield" />Next
+		</button>
+    </div>	
+<div class="innerBodyContainer marTop60 tabHeader">
+	<ul class="nav nav-tabs">
+		<!--       <li class="active hoverPointer"><a data-toggle="tab" data-target="#recent">RECENTS</a></li> -->
+		<li class="hoverPointer bookingType"  ng-class="{'active':selectedbookingtype == bookingtype.label}" ng-repeat="bookingtype in bookingtypes"><a data-toggle="tab"
+			ng-click="fetchHomePageDetails(bookingtype.label)">{{bookingtype.label}}</a></li>
+	</ul>
+</div>
+
+<div class="marTop30 lightYellowBackgroundColor padBot50 padTop50">
+	<div class="tab-content middleBodyContainer relative">
+		<div id="myCarousel1" ng-class="tab-pane fade carousel-inner homeSlider">
+			<div class="spaceThumbnail item hoverPointer floatLeft marRight30"
+				ng-repeat="spacedto in spaceList">
+				<a
+					href="#/space?spaceId={{spacedto.spaceId}}&bookingType={{spacedto.bookingTypeDetail.bookingTypeEnum}}&uniqueId={{spacedto.bookingTypeDetail.uniqueId}}" ng-class="{'hidden-xs': $index > 1}">
+					<div class="imgBlockThumb relative">
+						<img src="{{spacedto.imageUrls[0].serverFilePath}}"
+							alt="{{spacedto.name}}" title="{{spacedto.name}}" />
+						<div class="absolute offer-category text-center">
+							<p class="colorWhite samllText">offer/category</p>
+						</div>
+					</div>
+					<div class="textBlockThumb whiteBackgroundColor relative">
+						<h4 class="noMarBot bold bodyColor">{{spacedto.name}}<span class="noMarBot bold bodyColor" ng-class="{'hidden': spacedto.bookingTypeDetail.bookingTypeEnum != 'ROOM'}">({{spacedto.bookingTypeDetail.roomName}})</span></h4>
+						<p class="bodyColor fontText12">&#8377;
+							{{spacedto.bookingTypeDetail.pricePerHour}} /hour <span ng-class="{'hidden': spacedto.bookingTypeDetail.bookingTypeEnum == 'ROOM'}">per
+							{{spacedto.bookingTypeDetail.bookingTypeEnum}}</span></p>
+						<p class="noMarBot samllText lightGray">{{spacedto.nearestLandmark}}</p>
+
+						<img class="absolute flagThumb"
+							src="images/flag_favourite_unselected.png" alt="Add to favourite"
+							title="Add to favourite" />
+					</div>
+				</a>
+			</div>
+			<div class="clear"></div>
+			<a href="#/search"><img
+				class="hoverPointer absolute seeAllLink" ng-class="{'hidden-xs': spaceList.length < 2, ' hidden-lg': spaceList.length < 4 }"
+				src="images/view_all.png" alt="view all" title="view all" /></a>
+		</div>
+		<a class="left carousel-control" href="#myCarousel1" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span> <span
+			class="sr-only">Previous</span>
+		</a> <a class="right carousel-control" href="#myCarousel1" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right"></span> <span
+			class="sr-only">Next</span>
+		</a>
+	</div>
+</div>
+<div class="shadyBackground">
+	<div class="loginBox padTop60 padBot60 text-center bold">
+		<hr class="sepLine150 centerPosition grayBackgroundColor" />
+		<p>Did you know that you pay for what you use at Nwook?</p>
+		<p>At Nwook, we understand that productive meetings can sometimes
+			go longer than planned.</p>
+		<p>
+			Hence, we only charge you for the exact time - <br />not for entire
+			slots.
+		</p>
+		<hr class="sepLine150 centerPosition grayBackgroundColor" />
+	</div>
+
+	<div ng-class="{'hidden': hidenthis == undefined}">
+		<div class="text-center">
+			<h1 class="bold">Explore more places at Nwook</h1>
+		</div>
+		<div class="middleBodyContainer padTop20 marTop20">
+			<h2 class="bold">Summer Selects</h2>
+			<p class="marBot20">Get a respite from the rising tempature in
+				the city.</p>
+		</div>
+		<div class="lightGreenBackgroundColor padTop40 padBot40">
+			<div class="middleBodyContainer relative">
+				<div class="spaceThumbnail hoverPointer floatLeft marRight30">
+					<div class="imgBlockThumb relative">
+						<img src="images/demo-room.jpg" alt="Sector 5 Work"
+							title="Sector 5 Work" />
+						<div class="absolute offer-category text-center">
+							<p class="colorWhite samllText">offer/category</p>
+						</div>
+					</div>
+					<div class="textBlockThumb whiteBackgroundColor relative">
+						<h4 class="noMarBot bold bodyColor">Sector 5 Work</h4>
+						<p class="bodyColor fontText12">&#8377; 125 /hour per seat</p>
+						<p class="noMarBot samllText lightGray">10 mins from nicco
+							park</p>
+
+						<img class="absolute flagThumb"
+							src="images/flag_favourite_unselected.png" alt="Add to favourite"
+							title="Add to favourite" />
+					</div>
+				</div>
+				<div class="spaceThumbnail hoverPointer floatLeft marRight30">
+					<div class="imgBlockThumb relative">
+						<img src="images/demo-room.jpg" alt="Sector 5 Work"
+							title="Sector 5 Work" />
+						<div class="absolute offer-category text-center">
+							<p class="colorWhite samllText">offer/category</p>
+						</div>
+					</div>
+					<div class="textBlockThumb whiteBackgroundColor relative">
+						<h4 class="noMarBot bold bodyColor">Sector 5 Work</h4>
+						<p class="bodyColor fontText12">&#8377; 125 /hour per seat</p>
+						<p class="noMarBot samllText lightGray">10 mins from nicco
+							park</p>
+
+						<img class="absolute flagThumb"
+							src="images/flag_favourite_unselected.png" alt="Add to favourite"
+							title="Add to favourite" />
+					</div>
+				</div>
+				<div class="spaceThumbnail hoverPointer floatLeft marRight30">
+					<div class="imgBlockThumb relative">
+						<img src="images/demo-room.jpg" alt="Sector 5 Work"
+							title="Sector 5 Work" />
+						<div class="absolute offer-category text-center">
+							<p class="colorWhite samllText">offer/category</p>
+						</div>
+					</div>
+					<div class="textBlockThumb whiteBackgroundColor relative">
+						<h4 class="noMarBot bold bodyColor">Sector 5 Work</h4>
+						<p class="bodyColor fontText12">&#8377; 125 /hour per seat</p>
+						<p class="noMarBot samllText lightGray">10 mins from nicco
+							park</p>
+
+						<img class="absolute flagThumb"
+							src="images/flag_favourite_unselected.png" alt="Add to favourite"
+							title="Add to favourite" />
+					</div>
+				</div>
+				<div class="spaceThumbnail hoverPointer floatLeft">
+					<div class="imgBlockThumb relative">
+						<img src="images/demo-room.jpg" alt="Sector 5 Work"
+							title="Sector 5 Work" />
+						<div class="absolute offer-category text-center">
+							<p class="colorWhite samllText">offer/category</p>
+						</div>
+					</div>
+					<div class="textBlockThumb whiteBackgroundColor relative">
+						<h4 class="noMarBot bold bodyColor">Sector 5 Work</h4>
+						<p class="bodyColor fontText12">&#8377; 125 /hour per seat</p>
+						<p class="noMarBot samllText lightGray">10 mins from nicco
+							park</p>
+
+						<img class="absolute flagThumb"
+							src="images/flag_favourite_unselected.png" alt="Add to favourite"
+							title="Add to favourite" />
+					</div>
+				</div>
+				<div class="clear"></div>
+				<a href="#/search-results"><img
+					class="hoverPointer absolute seeAllLink" src="images/view_all.png"
+					alt="view all" title="view all" /></a>
+			</div>
+		</div>
+		<div class="middleBodyContainer padTop20 marTop20">
+			<h2 class="bold">Premium Grabs</h2>
+			<p class="marBot20">The best of the best, at a
+				no-strings-attached offering.</p>
+		</div>
+		<div class="lightGreenBackgroundColor padTop40 padBot40">
+			<div class="middleBodyContainer relative">
+				<div class="spaceThumbnail hoverPointer floatLeft marRight30">
+					<div class="imgBlockThumb relative">
+						<img src="images/demo-room.jpg" alt="Sector 5 Work"
+							title="Sector 5 Work" />
+						<div class="absolute offer-category text-center">
+							<p class="colorWhite samllText">offer/category</p>
+						</div>
+					</div>
+					<div class="textBlockThumb whiteBackgroundColor relative">
+						<h4 class="noMarBot bold bodyColor">Sector 5 Work</h4>
+						<p class="bodyColor fontText12">&#8377; 125 /hour per seat</p>
+						<p class="noMarBot samllText lightGray">10 mins from nicco
+							park</p>
+
+						<img class="absolute flagThumb"
+							src="images/flag_favourite_unselected.png" alt="Add to favourite"
+							title="Add to favourite" />
+					</div>
+				</div>
+				<div class="spaceThumbnail hoverPointer floatLeft marRight30">
+					<div class="imgBlockThumb relative">
+						<img src="images/demo-room.jpg" alt="Sector 5 Work"
+							title="Sector 5 Work" />
+						<div class="absolute offer-category text-center">
+							<p class="colorWhite samllText">offer/category</p>
+						</div>
+					</div>
+					<div class="textBlockThumb whiteBackgroundColor relative">
+						<h4 class="noMarBot bold bodyColor">Sector 5 Work</h4>
+						<p class="bodyColor fontText12">&#8377; 125 /hour per seat</p>
+						<p class="noMarBot samllText lightGray">10 mins from nicco
+							park</p>
+
+						<img class="absolute flagThumb"
+							src="images/flag_favourite_unselected.png" alt="Add to favourite"
+							title="Add to favourite" />
+					</div>
+				</div>
+				<div class="spaceThumbnail hoverPointer floatLeft marRight30">
+					<div class="imgBlockThumb relative">
+						<img src="images/demo-room.jpg" alt="Sector 5 Work"
+							title="Sector 5 Work" />
+						<div class="absolute offer-category text-center">
+							<p class="colorWhite samllText">offer/category</p>
+						</div>
+					</div>
+					<div class="textBlockThumb whiteBackgroundColor relative">
+						<h4 class="noMarBot bold bodyColor">Sector 5 Work</h4>
+						<p class="bodyColor fontText12">&#8377; 125 /hour per seat</p>
+						<p class="noMarBot samllText lightGray">10 mins from nicco
+							park</p>
+
+						<img class="absolute flagThumb"
+							src="images/flag_favourite_unselected.png" alt="Add to favourite"
+							title="Add to favourite" />
+					</div>
+				</div>
+				<div class="spaceThumbnail hoverPointer floatLeft">
+					<div class="imgBlockThumb relative">
+						<img src="images/demo-room.jpg" alt="Sector 5 Work"
+							title="Sector 5 Work" />
+						<div class="absolute offer-category text-center">
+							<p class="colorWhite samllText">offer/category</p>
+						</div>
+					</div>
+					<div class="textBlockThumb whiteBackgroundColor relative">
+						<h4 class="noMarBot bold bodyColor">Sector 5 Work</h4>
+						<p class="bodyColor fontText12">&#8377; 125 /hour per seat</p>
+						<p class="noMarBot samllText lightGray">10 mins from nicco
+							park</p>
+
+						<img class="absolute flagThumb"
+							src="images/flag_favourite_unselected.png" alt="Add to favourite"
+							title="Add to favourite" />
+					</div>
+				</div>
+				<div class="clear"></div>
+				<a href="#/search-results"><img
+					class="hoverPointer absolute seeAllLink" src="images/view_all.png"
+					alt="view all" title="view all" /></a>
+			</div>
+		</div>
+	</div>
+
+	<div class="padTop60 padBot20">
+		<div class="floatRight text-center goTopBox hoverPointer">
+			<img src="images/back-to-top.JPG" alt="Back to the top"
+				title="Back to the top">
+			<p class="samllText padTop10 lightGray">Back to the top</p>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div ng-include="'templates/footer.html'"></div>
+</div>
+<script type="text/javascript" src="js/lib/page-functionality.js"></script>

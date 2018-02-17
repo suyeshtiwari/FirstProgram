@@ -1,0 +1,343 @@
+<div ng-include="'templates/header.html'"></div>
+<div class="bookingPage">
+<div class="greenHeader darkGreenBackgroundColor relative">
+    <div class="innerBodyContainer">
+        <h4 class="floatLeft colorWhite headMsg" ng-class="{'hidden': backLink.offer == undefined}"><span class="colorWhite bold">&#10004;</span> Hourly package applied. 28 hours left.</h4>
+        
+        <a href="#/space?spaceId={{backLink.spaceId}}&bookingType={{backLink.bookingType}}&uniqueId={{backLink.uniqueId}}" class="floatRight">
+            <img class="exitGreenButton hoverPointer" src="../images/white-cross.jpg" alt="close" title="close" />
+        </a>
+        <a id="calucateAmount" ng-click="calculateBookingAmount()"></a>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="bookSeatBlock1">
+    <div class="innerBodyContainer">
+        <div>
+        <div class="det1 floatLeft rightBorder" ng-class="{'hidden': ackLink.bookingType == 'ROOM'}">
+            <div class="floatLeft">
+                <h4 class="noMarBot noMarTop numButtonText colorBlack bold">Number of seats</h4>
+            </div>
+            <div class="numButton floatLeft">
+                <div class="tableBlock minusButton hoverPointer text-center">
+                    <p class="noMarBot bold colorRed" ng-click="decreaseSeatCount()"  >-</p>
+                </div>
+                <div class="buttonContent tableBlock text-center darkGray">
+                     <input type="text" ng-model="bookingDetails.units" class="noMarBot fontText12 bold" readonly >
+                </div>
+                <div class="tableBlock plusButton hoverPointer text-center">
+                    <p class="noMarBot bold colorGreen" ng-click="increaseSeatCount()">+</p>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="det2 floatRight rightBorder text-center">
+            <h4 class="noMarBot noMarTop unbold colorBlack">End Time:&nbsp;&nbsp;
+                <input type="text" class="bold endTime colorBlack" value="00:00" readonly />
+            </h4>
+        </div>
+        <div class="clear hidden-lg"></div>
+        </div>
+        <div>
+        <div class="det3 floatRight rightBorder text-center">
+            <h4 class="noMarBot noMarTop unbold colorBlack">Start Time:&nbsp;&nbsp;
+                <input type="text" class="bold startTime colorBlack" value="00:00" readonly />
+            </h4>
+        </div>
+        
+        <div class="det4 floatRight rightBorder">
+            <div class='input-group date text-center' id='datetimepicker'>
+				<input type='text' onchange="angular.element(this).scope().getBookingGridDetails()" ng-model="bookingDetails.startDate" class="form-control upperCase bold specialDesign" />
+                <span class="input-group-addon edit hoverPointer">Edit</span>
+                <span class="clear"></span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div class="innerBodyContainer padBot60">
+    <div class="gridContainer marTop40 marBot40 relative">
+        <div class="gridblock text-center" ng-if="slotsAvailable[1]"><p class="noMarBot fontText12 colorGreen">08:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[1]"><p class="noMarBot fontText12 colorGreen">08:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[2]"><p class="noMarBot fontText12 colorGreen">08:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[2]"><p class="noMarBot fontText12 colorGreen">08:15</p></div>
+        <div class="gridblock text-center " ng-if="slotsAvailable[3]"><p class="noMarBot fontText12 colorGreen">08:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[3]"><p class="noMarBot fontText12 colorGreen">08:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[4]"><p class="noMarBot fontText12 colorGreen">08:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[4]"><p class="noMarBot fontText12 colorGreen">08:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[5]"><p class="noMarBot fontText12 colorGreen">09:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[5]"><p class="noMarBot fontText12 colorGreen">09:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[6]"><p class="noMarBot fontText12 colorGreen">09:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[6]"><p class="noMarBot fontText12 colorGreen">09:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[7]"><p class="noMarBot fontText12 colorGreen">09:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[7]"><p class="noMarBot fontText12 colorGreen">09:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[8]"><p class="noMarBot fontText12 colorGreen">09:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[8]"><p class="noMarBot fontText12 colorGreen">09:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[9]"><p class="noMarBot fontText12 colorGreen">10:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[9]"><p class="noMarBot fontText12 colorGreen">10:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[10]"><p class="noMarBot fontText12 colorGreen">10:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[10]"><p class="noMarBot fontText12 colorGreen">10:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[11]"><p class="noMarBot fontText12 colorGreen">10:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[11]"><p class="noMarBot fontText12 colorGreen">10:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[12]"><p class="noMarBot fontText12 colorGreen">10:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[12]"><p class="noMarBot fontText12 colorGreen">10:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[13]"><p class="noMarBot fontText12 colorGreen">11:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[13]"><p class="noMarBot fontText12 colorGreen">11:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[14]"><p class="noMarBot fontText12 colorGreen">11:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[14]"><p class="noMarBot fontText12 colorGreen">11:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[15]"><p class="noMarBot fontText12 colorGreen">11:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[15]"><p class="noMarBot fontText12 colorGreen">11:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[16]"><p class="noMarBot fontText12 colorGreen">11:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[16]"><p class="noMarBot fontText12 colorGreen">11:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[17]"><p class="noMarBot fontText12 colorGreen">12:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[17]"><p class="noMarBot fontText12 colorGreen">12:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[18]"><p class="noMarBot fontText12 colorGreen">12:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[18]"><p class="noMarBot fontText12 colorGreen">12:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[19]"><p class="noMarBot fontText12 colorGreen">12:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[19]"><p class="noMarBot fontText12 colorGreen">12:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[20]"><p class="noMarBot fontText12 colorGreen">12:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[20]"><p class="noMarBot fontText12 colorGreen">12:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[21]"><p class="noMarBot fontText12 colorGreen">13:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[21]"><p class="noMarBot fontText12 colorGreen">13:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[22]"><p class="noMarBot fontText12 colorGreen">13:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[22]"><p class="noMarBot fontText12 colorGreen">13:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[23]"><p class="noMarBot fontText12 colorGreen">13:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[23]"><p class="noMarBot fontText12 colorGreen">13:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[24]"><p class="noMarBot fontText12 colorGreen">13:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[24]"><p class="noMarBot fontText12 colorGreen">13:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[25]"><p class="noMarBot fontText12 colorGreen">14:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[25]"><p class="noMarBot fontText12 colorGreen">14:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[26]"><p class="noMarBot fontText12 colorGreen">14:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[26]"><p class="noMarBot fontText12 colorGreen">14:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[27]"><p class="noMarBot fontText12 colorGreen">14:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[27]"><p class="noMarBot fontText12 colorGreen">14:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[28]"><p class="noMarBot fontText12 colorGreen">14:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[28]"><p class="noMarBot fontText12 colorGreen">14:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[29]"><p class="noMarBot fontText12 colorGreen">15:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[29]"><p class="noMarBot fontText12 colorGreen">15:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[30]"><p class="noMarBot fontText12 colorGreen">15:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[30]"><p class="noMarBot fontText12 colorGreen">15:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[31]"><p class="noMarBot fontText12 colorGreen">15:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[31]"><p class="noMarBot fontText12 colorGreen">15:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[32]"><p class="noMarBot fontText12 colorGreen">15:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[32]"><p class="noMarBot fontText12 colorGreen">15:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[33]"><p class="noMarBot fontText12 colorGreen">16:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[33]"><p class="noMarBot fontText12 colorGreen">16:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[34]"><p class="noMarBot fontText12 colorGreen">16:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[34]"><p class="noMarBot fontText12 colorGreen">16:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[35]"><p class="noMarBot fontText12 colorGreen">16:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[35]"><p class="noMarBot fontText12 colorGreen">16:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[36]"><p class="noMarBot fontText12 colorGreen">16:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[36]"><p class="noMarBot fontText12 colorGreen">16:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[37]"><p class="noMarBot fontText12 colorGreen">17:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[37]"><p class="noMarBot fontText12 colorGreen">17:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[38]"><p class="noMarBot fontText12 colorGreen">17:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[38]"><p class="noMarBot fontText12 colorGreen">17:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[39]"><p class="noMarBot fontText12 colorGreen">17:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[39]"><p class="noMarBot fontText12 colorGreen">17:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[40]"><p class="noMarBot fontText12 colorGreen">17:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[40]"><p class="noMarBot fontText12 colorGreen">17:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[41]"><p class="noMarBot fontText12 colorGreen">18:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[41]"><p class="noMarBot fontText12 colorGreen">18:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[42]"><p class="noMarBot fontText12 colorGreen">18:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[42]"><p class="noMarBot fontText12 colorGreen">18:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[43]"><p class="noMarBot fontText12 colorGreen">18:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[43]"><p class="noMarBot fontText12 colorGreen">18:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[44]"><p class="noMarBot fontText12 colorGreen">18:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[44]"><p class="noMarBot fontText12 colorGreen">18:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[45]"><p class="noMarBot fontText12 colorGreen">19:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[45]"><p class="noMarBot fontText12 colorGreen">19:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[46]"><p class="noMarBot fontText12 colorGreen">19:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[46]"><p class="noMarBot fontText12 colorGreen">19:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[47]"><p class="noMarBot fontText12 colorGreen">19:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[47]"><p class="noMarBot fontText12 colorGreen">19:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[48]"><p class="noMarBot fontText12 colorGreen">19:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[48]"><p class="noMarBot fontText12 colorGreen">19:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[49]"><p class="noMarBot fontText12 colorGreen">20:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[49]"><p class="noMarBot fontText12 colorGreen">20:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[50]"><p class="noMarBot fontText12 colorGreen">20:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[50]"><p class="noMarBot fontText12 colorGreen">20:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[51]"><p class="noMarBot fontText12 colorGreen">20:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[51]"><p class="noMarBot fontText12 colorGreen">20:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[52]"><p class="noMarBot fontText12 colorGreen">20:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[52]"><p class="noMarBot fontText12 colorGreen">20:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[53]"><p class="noMarBot fontText12 colorGreen">21:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[53]"><p class="noMarBot fontText12 colorGreen">21:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[54]"><p class="noMarBot fontText12 colorGreen">21:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[54]"><p class="noMarBot fontText12 colorGreen">21:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[55]"><p class="noMarBot fontText12 colorGreen">21:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[55]"><p class="noMarBot fontText12 colorGreen">21:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[56]"><p class="noMarBot fontText12 colorGreen">21:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[56]"><p class="noMarBot fontText12 colorGreen">21:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[57]"><p class="noMarBot fontText12 colorGreen">22:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[57]"><p class="noMarBot fontText12 colorGreen">22:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[58]"><p class="noMarBot fontText12 colorGreen">22:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[58]"><p class="noMarBot fontText12 colorGreen">22:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[59]"><p class="noMarBot fontText12 colorGreen">22:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[59]"><p class="noMarBot fontText12 colorGreen">22:30</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[60]"><p class="noMarBot fontText12 colorGreen">22:45</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[60]"><p class="noMarBot fontText12 colorGreen">22:45</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[61]"><p class="noMarBot fontText12 colorGreen">23:00</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[61]"><p class="noMarBot fontText12 colorGreen">23:00</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[62]"><p class="noMarBot fontText12 colorGreen">23:15</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[62]"><p class="noMarBot fontText12 colorGreen">23:15</p></div>
+        <div class="gridblock text-center" ng-if="slotsAvailable[63]"><p class="noMarBot fontText12 colorGreen">23:30</p></div>
+        <div class="gridblock text-center unavailGrid" ng-if="!slotsAvailable[63]"><p class="noMarBot fontText12 colorGreen">23:30</p></div>
+        <div class="clear"></div>
+        
+        <div class="toast centerPosition hidden">
+            <p class="text-center fontText12 colorRed noMarBot">Unable to reserve. Please select a time slot with continuous availability of minimum booking duration.</p>
+        </div>
+    </div>
+    
+    
+    <div class="bookSeatBlock2 padBot10">
+        <div class="floatLeft padTop40">
+            <span class="hidden durationBlock">2</span>
+            <p class="noMarBot fontText12 darkGray">Note: Minimum booking duration is <span class="duration bold">30</span> minutes</p>
+        </div>
+        <div class="floatRight">
+            <div class="floatRight"><p class="colorGreen fontText12 bold avTextBlock">Not Available</p></div>
+            <div class="unavailableBoxNote floatRight"></div>
+            <div class="floatRight"><p class="colorGreen fontText12 bold avTextBlock">Available</p></div>
+            <div class="availableBoxNote floatRight"></div>
+            <div class="clear"></div>  
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="bookSeatBlock3" > 
+        <div class="bookSeatLeft floatLeft" ng-class="{'hidden': xyzsd == undefined}">
+            <p class="lightGray noMarTop marBot20">Select Add-ons:</p>
+            <div class="addOnsblock">
+                <div class="addOnsRow">
+                    <div class="addOnsHeadCol1 floatLeft">
+                        <p class="fontText12 noMarBot lightGray">Name</p>
+                    </div>
+                    <div class="addOnsHeadCol2 floatLeft">
+                        <p class="fontText12 noMarBot lightGray">Price</p>
+                    </div>
+                    <div class="addOnsHeadCol3 floatLeft">
+                        <p class="fontText12 noMarBot lightGray">Units</p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="addOnsRow">
+                    <div class="addOnsCol1 floatLeft">
+                        <p class="noMarBot darkGray">Coffee</p>
+                    </div>
+                    <div class="addOnsCol2 floatLeft">
+                        <p class="noMarBot darkGray">&#8377; 20</p>
+                    </div>
+                    <div class="addOnsCol3 floatLeft">
+                        <div class="numButton">
+                            <div class="tableBlock hoverPointer text-center">
+                                <P class="noMarBot bold colorRed" ng-click="decreaseCoffeeCount()">-</P>
+                            </div>
+                            <div class="buttonContent tableBlock text-center darkGray">
+                                 <input type="text" ng-model="bookingDetails.coffeeCount" class="noMarBot fontText12 bold" value="0" readonly >
+                            </div>
+                            <div class="tableBlock hoverPointer text-center">
+                                <P class="noMarBot bold colorGreen" ng-click="increaseCoffeeCount()">+</P>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="addOnsRow">
+                    <div class="addOnsCol1 floatLeft">
+                        <p class="noMarBot darkGray">Print out - Color (1 Page)</p>
+                    </div>
+                    <div class="addOnsCol2 floatLeft">
+                        <p class="noMarBot darkGray">&#8377; 20</p>
+                    </div>
+                    <div class="addOnsCol3 floatLeft">
+                        <div class="numButton">
+                            <div class="tableBlock hoverPointer text-center">
+                                <P class="noMarBot bold colorRed" ng-click="decreasePrintCount()">-</P>
+                            </div>
+                            <div class="buttonContent tableBlock text-center darkGray">
+                                 <input type="text" ng-model="bookingDetails.printCount" class="noMarBot fontText12 bold" value="0" readonly >
+                            </div>
+                            <div class="tableBlock hoverPointer text-center">
+                                <P class="noMarBot bold colorGreen" ng-click="increasePrintCount()">+</P>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="addOnsRow">
+                    <div class="addOnsCol1 floatLeft">
+                        <p class="noMarBot darkGray">Internet</p>
+                    </div>
+                    <div class="addOnsCol2 floatLeft">
+                        <p class="noMarBot darkGray">&#8377; 50</p>
+                    </div>
+                    <div class="addOnsCol3 switchBlockCol3 floatLeft">
+                        <div class="switchBlock">
+                            <div class="tableBlock">
+                                <p class="fontText12 lightGray noMarBot bold switchFalse colorGreen">No</p>
+                            </div>
+                            <div class="tableBlock text-center">
+                                <label class="switch noMarBot">
+                                    <input type="checkbox" ng-model="bookingDetails.isInternetRequired">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="tableBlock">
+                                <p class="fontText12 lightGray noMarBot bold switchTrue">Yes</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="bookSeatRight floatRight leftPad30">
+            <div class="">
+                <input class="enter-coupon-code block floatLeft bold" placeholder="ENTER COUPON CODE" />
+                <button class="apply block floatLeft fontText12 text-center colorWhite bold darkGreenBackgroundColor">Apply</button>
+                <p class="clear colorGreen fontText12 padTop5 marBot20">Congrats! Discount of &#8377; <span class="discount colorGreen fontText12">100</span> applied</p>
+            </div>
+            <div class="floatLeft">
+                <p class="bold noMarBot padTop5 darkGray">Amount payable <sup>(?)</sup> :</p>
+            </div>
+            <div class="floatRight">
+                <p class="amount bold colorGreen noMarBot">&#8377; <span class="colorGreen">{{bookingAmount}}</span></p>
+            </div>
+            <div class="clear"></div>
+            <p class="fontText12 darkGray marTop20">Choose payment option</p>
+            <div class="halfWidth floatLeft tableBlock marTop5">
+                <div class="grayRadio block relative floatLeft">
+                    <input class="noMarBot absolute hoverPointer" name="paidoption" type="radio" ng-model="bookingDetails.paymentMode" value="Wallet" />
+                </div>
+                <p class="block darkGray floatLeft">Wallet (&#8377; <span>{{walletBalance}}</span>)</p>
+                <div class="clear"></div>
+            </div>
+            
+            <div class="halfWidth floatLeft tableBlock marTop5">
+                <div class="grayRadio block relative floatLeft">
+                    <input class="noMarBot absolute hoverPointer" name="paidoption" type="radio" ng-model="bookingDetails.paymentMode" value="Cash" />
+                </div>
+                <p class="block darkGray floatLeft">Cash</p>
+                <div class="clear"></div>            
+			</div>
+			<div class="halfWidth floatLeft tableBlock marTop5" ng-if="{'hidden': (spaceGridDetails == undefined || spaceGridDetails.packageTime == undefined)}">
+                <div class="grayRadio block relative floatLeft">
+                    <input class="noMarBot absolute hoverPointer" name="paidoption" type="radio" ng-model="bookingDetails.paymentMode" value="Package" />
+                </div>
+                <p class="block darkGray floatLeft">Package</p>
+                <div class="clear"></div>            
+			</div>
+			<!-- <div class="halfWidth floatLeft tableBlock marTop5">
+                <button id="rzp-button1" ng-click="doPayment()">Pay</button>
+            </div> -->
+            <div class="clear"></div>
+            <a href="" ng-click="doBooking()" class="inline-block greenLink fontText12 fullWidth hoverPointer marTop10">RESERVE {{engineBookingType}}</a>
+            <a id="bookingBtn" ng-click="checkBookingStatus()"></a>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+</div>
+<div ng-include="'templates/blank.html'"></div>

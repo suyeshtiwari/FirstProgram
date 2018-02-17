@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap Login Form Template</title>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+  
+
+  //This will get OTP
+function sendOTP() {
+
+    var arr = {
+                      otpType: "MOBILE",
+                      smsAction: "MOBILE_VERIFICATION",
+                      to: "9711139237"
+                    };
+
+    var url = "http://localhost:8888/uniqueCode/generate";
+    $.ajax({
+      type : 'POST',
+      url : url,
+      data: JSON.stringify(arr),
+      contentType: 'application/json'
+    }).success(function(data) {
+      console.log(data);
+       alert(data.message)
+    }).error(function( errorThrown) {
+        console.log(errorThrown);
+        alert(errorThrown);
+    });
+}
+
+function signup() {
+    var arr = {
+  "phoneNumber": "9711139237",
+  "uniqueCode": "413231711"
+};
+
+    var url = "http://localhost:8888/signup";
+    $.ajax({
+      type : 'POST',
+      url : url,
+      data: JSON.stringify(arr),
+      contentType: 'application/json'
+    }).success(function(data) {
+      console.log(data);
+       alert(data.message)
+    }).error(function( errorThrown) {
+        console.log(errorThrown);
+        alert(errorThrown.responseJSON);
+    });
+}
+
+function loginByOTP() {
+    var arr = {
+  "loginCredentialTypeEnum": "OTP",
+  "password": "362327611",
+  "userName": "9711139237"
+}
+
+    var url = "http://localhost:8888/login";
+    $.ajax({
+      type : 'POST',
+      url : url,
+      data: JSON.stringify(arr),
+      contentType: 'application/json'
+    }).success(function(data) {
+      console.log(data);
+       alert(data.access_token)
+    }).error(function( errorThrown) {
+        console.log(errorThrown);
+        alert(errorThrown.responseJSON.error);
+    });
+}
+
+//eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzU2OTcwMDgsInVzZXJfbmFtZSI6IjEiLCJhdXRob3JpdGllcyI6WyJST0xFX0FVVEhFTlRJQ0FURURfVVNFUiJdLCJqdGkiOiJmOGFhMzg1OC05MzhiLTQzNTMtOGVmMC1hNzMwMTk3MGIwNTkiLCJjbGllbnRfaWQiOiJhY21lIiwic2NvcGUiOlsib3BlbmlkIl19.O2peHkrf0rBLndq_ekXaOaa4JKzTWHOi0I0QMF2kFQcgUiLMTweVVBwoUQ4QEQSXKYB7f5ho_dExVgCMJ5cs3hekEYKjAwnZK0mZLSK0GvnpQ2vnHOD0qoHc93l7HaFLaG1AIWq5stDQXj4-6d7oPB-bz1l43f8FlkWDrS2yFa9Lli9SAMRmU84xgixonf4pSehAcaDVdzylYwt-dphOFzpstjpUpz67UMN1B_yLv6vaLNQ2cV-RvmyPY7C-z8Sh4c-fuahtstZSrWO8yLmL8pHrk7kGst6zgZjUTrVXpMH4j7YxDZecPc7wXynOlW2jMU0cHuY1_-zV-SmigHH6kw
+
+function resetPasswordRequest() {
+    var arr = {
+  "otpType": "MOBILE",
+  "smsAction": "RESET_PASSWORD",
+  "to": "9711139237"
+}
+
+    var url = "http://localhost:8888/uniqueCode/generate";
+    $.ajax({
+      type : 'POST',
+      url : url,
+      data: JSON.stringify(arr),
+      contentType: 'application/json'
+    }).success(function(data) {
+      console.log(data);
+       alert(data.message)
+    }).error(function( errorThrown) {
+        console.log(errorThrown);
+        alert(errorThrown.responseJSON.error);
+    });
+}
+
+
+function resetPassword() {
+    var arr = {
+  "confirmPassword": "ladygaga123",
+  "newPassword": "ladygaga123",
+  "phoneNumber": "9711139237",
+  "uniqueCode": "12345678"
+}
+
+    var url = "http://localhost:8888/resetPassword";
+    $.ajax({
+      type : 'POST',
+      url : url,
+      data: JSON.stringify(arr),
+      contentType: 'application/json'
+    }).success(function(data) {
+      console.log(data);
+       alert(data.message)
+    }).error(function( errorThrown) {
+        console.log(errorThrown);
+        alert(errorThrown.responseJSON.message);
+    });
+}
+
+function loginByPassword() {
+    var arr = {
+  "loginCredentialTypeEnum": "PASSWORD",
+  "password": "ladygaga123",
+  "userName": "9711139237"
+}
+
+    var url = "http://localhost:8888/login";
+    $.ajax({
+      type : 'POST',
+      url : url,
+      data: JSON.stringify(arr),
+      contentType: 'application/json'
+    }).success(function(data) {
+      console.log(data);
+       alert(data.access_token)
+    }).error(function( errorThrown) {
+        console.log(errorThrown);
+        alert(errorThrown.responseJSON.error);
+    });
+}
+
+function passwordChange() {
+    var arr = {
+  "confirmPassword": "ladygaga123",
+  "currentPassword": "ladygaga1234",
+  "newPassword": "ladygaga123"
+}
+
+    var url = "http://localhost:8888/changePassword?access_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzU2OTcwMDgsInVzZXJfbmFtZSI6IjEiLCJhdXRob3JpdGllcyI6WyJST0xFX0FVVEhFTlRJQ0FURURfVVNFUiJdLCJqdGkiOiJmOGFhMzg1OC05MzhiLTQzNTMtOGVmMC1hNzMwMTk3MGIwNTkiLCJjbGllbnRfaWQiOiJhY21lIiwic2NvcGUiOlsib3BlbmlkIl19.O2peHkrf0rBLndq_ekXaOaa4JKzTWHOi0I0QMF2kFQcgUiLMTweVVBwoUQ4QEQSXKYB7f5ho_dExVgCMJ5cs3hekEYKjAwnZK0mZLSK0GvnpQ2vnHOD0qoHc93l7HaFLaG1AIWq5stDQXj4-6d7oPB-bz1l43f8FlkWDrS2yFa9Lli9SAMRmU84xgixonf4pSehAcaDVdzylYwt-dphOFzpstjpUpz67UMN1B_yLv6vaLNQ2cV-RvmyPY7C-z8Sh4c-fuahtstZSrWO8yLmL8pHrk7kGst6zgZjUTrVXpMH4j7YxDZecPc7wXynOlW2jMU0cHuY1_-zV-SmigHH6kw";
+    $.ajax({
+      type : 'POST',
+      url : url,
+      data: JSON.stringify(arr),
+      contentType: 'application/json'
+    }).success(function(data) {
+      console.log(data);
+       alert(data.message)
+    }).error(function( errorThrown) {
+        console.log(errorThrown);
+        alert(errorThrown.responseJSON.message);
+    });
+}
+
+function validateToken() {
+    var url = "http://localhost:8888/validate?access_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzU2OTcwMDgsInVzZXJfbmFtZSI6IjEiLCJhdXRob3JpdGllcyI6WyJST0xFX0FVVEhFTlRJQ0FURURfVVNFUiJdLCJqdGkiOiJmOGFhMzg1OC05MzhiLTQzNTMtOGVmMC1hNzMwMTk3MGIwNTkiLCJjbGllbnRfaWQiOiJhY21lIiwic2NvcGUiOlsib3BlbmlkIl19.O2peHkrf0rBLndq_ekXaOaa4JKzTWHOi0I0QMF2kFQcgUiLMTweVVBwoUQ4QEQSXKYB7f5ho_dExVgCMJ5cs3hekEYKjAwnZK0mZLSK0GvnpQ2vnHOD0qoHc93l7HaFLaG1AIWq5stDQXj4-6d7oPB-bz1l43f8FlkWDrS2yFa9Lli9SAMRmU84xgixonf4pSehAcaDVdzylYwt-dphOFzpstjpUpz67UMN1B_yLv6vaLNQ2cV-RvmyPY7C-z8Sh4c-fuahtstZSrWO8yLmL8pHrk7kGst6zgZjUTrVXpMH4j7YxDZecPc7wXynOlW2jMU0cHuY1_-zV-SmigHH6kw";
+    $.ajax({
+      type : 'GET',
+      url : url
+    }).success(function(data) {
+      console.log(data);
+       alert(data.id)
+    }).error(function( errorThrown) {
+        console.log(errorThrown);
+        alert(errorThrown.responseJSON.message);
+    });
+}
+
+function getUserDetails(){
+  var url = "http://localhost:8888/userDetails?access_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzU2OTcwMDgsInVzZXJfbmFtZSI6IjEiLCJhdXRob3JpdGllcyI6WyJST0xFX0FVVEhFTlRJQ0FURURfVVNFUiJdLCJqdGkiOiJmOGFhMzg1OC05MzhiLTQzNTMtOGVmMC1hNzMwMTk3MGIwNTkiLCJjbGllbnRfaWQiOiJhY21lIiwic2NvcGUiOlsib3BlbmlkIl19.O2peHkrf0rBLndq_ekXaOaa4JKzTWHOi0I0QMF2kFQcgUiLMTweVVBwoUQ4QEQSXKYB7f5ho_dExVgCMJ5cs3hekEYKjAwnZK0mZLSK0GvnpQ2vnHOD0qoHc93l7HaFLaG1AIWq5stDQXj4-6d7oPB-bz1l43f8FlkWDrS2yFa9Lli9SAMRmU84xgixonf4pSehAcaDVdzylYwt-dphOFzpstjpUpz67UMN1B_yLv6vaLNQ2cV-RvmyPY7C-z8Sh4c-fuahtstZSrWO8yLmL8pHrk7kGst6zgZjUTrVXpMH4j7YxDZecPc7wXynOlW2jMU0cHuY1_-zV-SmigHH6kw";
+    $.ajax({
+      type : 'GET',
+      url : url
+    }).success(function(data) {
+      console.log(data);
+       alert(data.userDetails)
+    }).error(function( errorThrown) {
+        console.log(errorThrown);
+        alert(errorThrown.responseJSON.message);
+    });
+}
+
+function sendOTPOnEMAIL() {
+
+    var arr = {
+                      otpType: "EMAIL",
+                      smsAction: "EMAIL_VERIFICATION",
+                      to: "raghunitb@gmail.com"
+                    };
+
+    var url = "http://localhost:8888/uniqueCode/generate";
+    $.ajax({
+      type : 'POST',
+      url : url,
+      data: JSON.stringify(arr),
+      contentType: 'application/json'
+    }).success(function(data) {
+      console.log(data);
+       alert(data.message)
+    }).error(function( errorThrown) {
+        console.log(errorThrown);
+        alert(errorThrown);
+    });
+}
+
+function verifyEMAIL(){
+
+  var arr = {
+  "smsAction": "EMAIL_VERIFICATION",
+  "toBeVerified": "raghunitb@gmail.com",
+  "uniqueCode": "12345678"
+}
+
+  var url = "http://localhost:8888/uniqueCode/verify?access_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzU2OTcwMDgsInVzZXJfbmFtZSI6IjEiLCJhdXRob3JpdGllcyI6WyJST0xFX0FVVEhFTlRJQ0FURURfVVNFUiJdLCJqdGkiOiJmOGFhMzg1OC05MzhiLTQzNTMtOGVmMC1hNzMwMTk3MGIwNTkiLCJjbGllbnRfaWQiOiJhY21lIiwic2NvcGUiOlsib3BlbmlkIl19.O2peHkrf0rBLndq_ekXaOaa4JKzTWHOi0I0QMF2kFQcgUiLMTweVVBwoUQ4QEQSXKYB7f5ho_dExVgCMJ5cs3hekEYKjAwnZK0mZLSK0GvnpQ2vnHOD0qoHc93l7HaFLaG1AIWq5stDQXj4-6d7oPB-bz1l43f8FlkWDrS2yFa9Lli9SAMRmU84xgixonf4pSehAcaDVdzylYwt-dphOFzpstjpUpz67UMN1B_yLv6vaLNQ2cV-RvmyPY7C-z8Sh4c-fuahtstZSrWO8yLmL8pHrk7kGst6zgZjUTrVXpMH4j7YxDZecPc7wXynOlW2jMU0cHuY1_-zV-SmigHH6kw";
+    $.ajax({
+      type : 'POST',
+      url : url,
+      data: JSON.stringify(arr),
+      contentType: 'application/json'
+    }).success(function(data) {
+      console.log(data);
+       alert(data.message)
+    }).error(function( errorThrown) {
+        console.log(errorThrown);
+        alert(errorThrown.responseJSON);
+    });
+}
+
+</script>
+</head>
+
+<body onload="verifyEMAIL()">
+</body>
+
+</html>

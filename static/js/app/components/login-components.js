@@ -1,0 +1,15 @@
+angular.module(
+    'LoginComponentsModule',
+    [
+        'LoginControllerModule',
+        'ProfileControllerModule',
+        'SignupControllerModule',
+        'LoginServiceModule',
+        'SignupServiceModule',
+        'ProfileServiceModule',
+        'ChangePasswordControllerModule',
+        'ChangePasswordServiceModule',
+        'ResetPasswordControllerModule',
+        'ResetPasswordServiceModule'
+    ]
+);

@@ -1,0 +1,23 @@
+<div ng-include="'templates/header.html'"></div>
+<div>
+	<div
+		class="greenBoxCheck walletContainer darkGreenBackgroundColor marTop60 marBot5">
+		<h3 class="colorWhite walletbal bold noMarTop marBot15">Wallet
+			Balance</h3>
+		<div class="checkAgreeBlock padTop60">
+			<p class="noMarBot walletbal colorWhite floatLeft">{{
+				walletBalance }} INR</p>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div>
+		<div class="greenBoxCheck walletContainer addbalance text-center">
+		<div class="marTop20 marBot20">
+			<input type="text" class="loginInput halfWidth inline marRight5 profileBackgroundColor" ng-model="wallet.amount" placeholder="Enter amount here" />
+		</div>
+			<a class="inline-block greenLink fontText12 fullWidth hoverPointer"
+				id="rzp-button1" ng-click="addBalance()">Add Balance</a>
+			<a id="refresh" ng-click="getAddMoneyStatus()"></a>
+		</div>
+	</div>
+</div>

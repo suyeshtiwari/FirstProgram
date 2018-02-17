@@ -1,0 +1,94 @@
+<div ng-include="'templates/header.html'"></div>
+
+<div class="loadingstatus absolute"></div>
+<div class="shadyBackground">
+    <div class="middleBodyContainer padTop20 padBot10">
+        <p class="colorBlack bold marBot5">wokring </p>
+        <p class="colorBlack fontText12 noMarBot">2 results. Showing results for “working” instead.</p>
+    </div>
+</div>
+<div class="padTop20 padBot20 sepgrayBorder" data-ng-init="searchlisting()">
+    <div class="middleBodyContainer">
+        <div class="searchBlock1 tableBlock floatLeft">
+            <h4 class="colorGreen noMarTop noMarBot fontText20">2 matches</h4>
+        </div>
+        <div class="searchBlock3 tableBlock floatRight">
+            <p class="fontText12 colorBlack tableBlock noMarBot">SORT BY&nbsp;&nbsp;&nbsp;</p>
+            <div class="tableBlock sortBox hoverPointer">
+                <div class="tableBlock sortBox1 text-center selectedBox"><span class="fontText12 colorGreen">Relevance</span></div>
+                <div class="tableBlock sortBox2 text-center"><span class="fontText12 colorGreen">&darr;&nbsp;&nbsp;Price</span></div>
+            </div>
+        </div>
+        <div class="searchBlock2 tableBlock floatRight marRight30">
+            <p class="fontText12 colorBlack inline noMarBot">FILTER BY LOCATION&nbsp;&nbsp;&nbsp;</p>
+            <select class="searchResultSelect hoverPointer">
+                <option value="Kolkata">Kolkata</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="New Delhi">New Delhi</option>
+            </select>
+        </div>
+        <div class="searchBlock2 tableBlock floatRight marRight30">
+            <p class="subText colorBlack inline noMarBot">FILTER BY Type&nbsp;&nbsp;&nbsp;</p>
+            <select class="searchResultSelect hoverPointer">
+                <option value="Work">Work</option>
+                <option value="Study">Study</option>
+                <option value="Meet">Meet</option>
+                <option value="Play">Play</option>
+                <option value="Swim">Swim</option>
+                <option value="Workout">Workout</option>
+            </select>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="marTop30 lightYellowBackgroundColor padBot50 padTop50">
+	<div class="tab-content middleBodyContainer relative">
+		<div id="recent" ng-class="tab-pane fade">
+			<div class="spaceThumbnail hoverPointer floatLeft marRight30"
+				ng-repeat="spacedto in spaceList">
+				<a
+					href="#/space?spaceId={{spacedto.spaceId}}&bookingType={{spacedto.bookingTypeDetail.bookingTypeEnum}}&uniqueId={{spacedto.bookingTypeDetail.uniqueId}}"">
+					<div class="imgBlockThumb relative">
+						<img src="{{spacedto.imageUrls[0].serverFilePath}}"
+							alt="{{spacedto.name}}" title="{{spacedto.name}}" />
+						<div class="absolute offer-category text-center">
+							<p class="colorWhite samllText">offer/category</p>
+						</div>
+					</div>
+					<div class="textBlockThumb whiteBackgroundColor relative">
+						<h4 class="noMarBot bold bodyColor">{{spacedto.name}}<span class="noMarBot bold bodyColor" ng-class="{'hidden': spacedto.bookingTypeDetail.bookingTypeEnum != 'ROOM'}">({{spacedto.bookingTypeDetail.roomName}})</span></h4>
+						<p class="bodyColor fontText12">&#8377;
+							{{spacedto.bookingTypeDetail.pricePerHour}} /hour <span ng-class="{'hidden': spacedto.bookingTypeDetail.bookingTypeEnum == 'ROOM'}">per
+							{{spacedto.bookingTypeDetail.bookingTypeEnum}}</span></p>
+						<p class="noMarBot samllText lightGray">{{spacedto.nearestLandmark}}</p>
+
+						<img class="absolute flagThumb"
+							src="images/flag_favourite_unselected.png" alt="Add to favourite"
+							title="Add to favourite" />
+					</div>
+				</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+<div class="shadyBackground" >
+    <div class="loginBox padTop60 padBot60 text-center bold">
+        <hr class="sepLine150 centerPosition grayBackgroundColor" />
+        <p>Did you know that you pay for what you use at Nwook?</p>
+        <p>At Nwook, we understand that productive meetings can sometimes go longer than planned. </p>
+        <p>Hence, we only charge you for the exact time - <br />not for entire slots.</p>
+        <hr class="sepLine150 centerPosition grayBackgroundColor" />
+    </div>
+</div>
+<div class="padTop60 padBot20 shadyBackground">
+    <div class="floatRight text-center goTopBox hoverPointer">
+        <img src="images/back-to-top.JPG" alt="Back to the top" title="Back to the top">
+        <p class="samllText padTop10 lightGray">Back to the top</p>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div ng-include="'templates/footer.html'"></div>
+
+<script type="text/javascript" src="js/page-functionality.js"></script>	

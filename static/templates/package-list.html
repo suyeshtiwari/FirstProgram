@@ -1,0 +1,42 @@
+<div ng-include="'templates/header.html'"></div>
+<div data-ng-init="getAllUserPackageBookings()">
+	<table id="packageBookingList" class="display responsive nowrap" cellspacing="0"  ng-if="packageBookingList.length > 0">
+		<thead>
+		<tr>
+			<th>bookingId</th>
+			<th>spaceId</th>
+			<th>bookingStatus</th>
+			<th>bookingType</th>
+			<th>PackageName</th>
+			<th>startDate</th>
+			<th>endDate</th>
+			<th>bookingTime</th>
+			<th>paymentMode</th>
+			<th>totalAmount</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="x in packageBookingList"
+			ng-if="x.bookingStatus != 'PROCESSING'">
+			<td><a href="#/package-details?bookingId={{x.bookingId}}" class="colorgreen">{{ x.bookingId }}</a>
+				</td>
+			<td>{{ spaceIdNameData[x.spaceId] }}</td>
+			<td>{{ x.bookingStatus }}</td>
+			<td>{{ x.bookingType }}</td>
+			<td>{{ x.packageName}}</td>
+			<td>{{ x.startDate }}</td>
+			<td>{{ x.endDate }}</td>
+			<td>{{ x.bookingTime }}</td>
+			<td>{{ x.paymentMode }}</td>
+			<td>{{ x.totalAmount }}</td>
+		</tr>
+		</tbody>
+	</table>
+	
+	<table ng-if="packageBookingList == undefined || packageBookingList.length == 0">
+		<tr>
+			<th colspan="18">No booking found.</th>
+		</tr>
+	</table>
+	
+</div>
